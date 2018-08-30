@@ -20,3 +20,7 @@ handler.setFormatter(app.config['LOG_FORMATTER'])
 app.logger.addHandler(handler)
 logger = app.logger
 logger.info('config name: %s' % config_name)
+
+from .effortless.controllers import effortless
+
+app.register_blueprint(effortless)
