@@ -1,6 +1,5 @@
 import csv
 import pickle
-
 from flask_restful import Resource, reqparse
 
 from application import app, logger
@@ -43,4 +42,13 @@ class RecommendationResource(Resource):
             sort_results=True
         )
 
-        return str(recommendation_idxs)
+        recommendation_idxs = recommendation_idxs[0]
+
+        # it could be done with operator.iteritems and it will be faster,
+        # but I think that using list comprehensions is clearer
+        results = [ids[i] for i in recommendation_idxs]
+        response = {
+            'recommended products': results
+        }
+
+        return response
