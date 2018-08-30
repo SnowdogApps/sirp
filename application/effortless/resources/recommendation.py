@@ -19,6 +19,13 @@ with open(app.config['IMG_CSV_PATH'], 'r') as f:
     ids = [row[0] for row in reader]
 logger.info('Image list loaded')
 
+
 class RecommendationResource(Resource):
+    def __init__(self):
+        self.parser = reqparse.RequestParser()
+        self.parser.add_argument('number', required=False, type=int,
+                                 location='args', default=5)
+
     def get(self, id):
+        args = self.parser.parse_args()
         return 'RecommendationResource'
