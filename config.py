@@ -17,13 +17,13 @@ class Config:
 
     IMG_CSV_PATH = os.path.join(
         BASE_DIR,
-        'application/effortless/resources/data/imgs.csv')
+        'application/effortless/data/imgs.csv')
     TREE_PATH = os.path.join(
         BASE_DIR,
-        'application/effortless/resources/data/tree.pickle')
+        'application/effortless/data/tree.pickle')
     FEATURES_PATH = os.path.join(
         BASE_DIR,
-        'application/effortless/resources/data/features.pickle')
+        'application/effortless/data/features.pickle')
 
 
 class Development(Config):

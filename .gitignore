@@ -111,3 +111,6 @@ venv.bak/
 
 # Pickle
 *.pickle
+
+# Data
+/application/effortless/data/
