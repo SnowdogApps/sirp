@@ -15,8 +15,12 @@ class Config:
 
     JSONIFY_PRETTYPRINT_REGULAR = False
 
-    TREE_PATH = os.path.join(BASE_DIR,
-                             'application/effortless/resources/tree.pickle')
+    TREE_PATH = os.path.join(
+        BASE_DIR,
+        'application/effortless/resources/pickles/tree.pickle')
+    FEATURES_PATH = os.path.join(
+        BASE_DIR,
+        'application/effortless/resources/pickles/features.pickle')
 
 
 class Development(Config):
