@@ -15,6 +15,9 @@ class Config:
 
     JSONIFY_PRETTYPRINT_REGULAR = False
 
+    TREE_PATH = os.path.join(BASE_DIR,
+                             'application/effortless/resources/tree.pickle')
+
 
 class Development(Config):
     DEBUG = True
