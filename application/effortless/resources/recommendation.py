@@ -4,15 +4,18 @@ import pickle
 from flask_restful import Resource, reqparse
 
 from application import app, logger
+from ..exceptions import InvalidUsage
 
 logger.info('Unpickling tree...')
 with open(app.config['TREE_PATH'], 'rb') as f:
     tree = pickle.load(f)
 logger.info('Tree unpickled')
+
 logger.info('Unpickling features...')
 with open(app.config['FEATURES_PATH'], 'rb') as f:
     features = pickle.load(f)
 logger.info('Features unpickled')
+
 logger.info('Loading image list...')
 with open(app.config['IMG_CSV_PATH'], 'r') as f:
     reader = csv.reader(f)
@@ -28,4 +31,16 @@ class RecommendationResource(Resource):
 
     def get(self, id):
         args = self.parser.parse_args()
-        return 'RecommendationResource'
+
+        try:
+            idx = ids.index(id)
+        except ValueError:
+            raise InvalidUsage('Product not found')
+
+        dists, recommendation_idxs = tree.query(
+            [features[idx]],
+            k=args['number'],
+            sort_results=True
+        )
+
+        return str(recommendation_idxs)
