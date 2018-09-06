@@ -19,9 +19,11 @@ Example:
         
         $ python generator.py images.csv --model inception
 """
+import os
 import csv
 import argparse
 import pickle
+from shutil import copy
 
 import numpy as np
 from sklearn.neighbors import KDTree
@@ -54,6 +56,8 @@ def main(args):
         images = [row[1] for row in reader]
     print(len(images), 'images found')
 
+    copy(args.images, os.path.join(args.output, 'imgs.csv'))
+
     print('Extracting features...')
     extractor = models[args.model]['extractor']
     preprocess = models[args.model]['preprocess']
@@ -63,9 +67,9 @@ def main(args):
         activations = scda.extract_features(extractor, img, preprocess)
         description = scda.aggregate_descriptors(activations)
         descriptions.append(description)
-        
+
     print('Saving features...')
-    with open('features.pickle', 'wb') as f:
+    with open(os.path.join(args.output, 'features.pickle'), 'wb') as f:
         pickle.dump(descriptions, f, pickle.HIGHEST_PROTOCOL)
     print('Features saved.')
 
@@ -73,7 +77,7 @@ def main(args):
     tree = KDTree(descriptions)
 
     print('Pickling tree...')
-    with open('tree.pickle', 'wb') as f:
+    with open(os.path.join(args.output, 'tree.pickle'), 'wb') as f:
         pickle.dump(tree, f, pickle.HIGHEST_PROTOCOL)
     print('Tree saved.')
 
@@ -89,6 +93,11 @@ if __name__ == '__main__':
         choices=['vgg16', 'inception', 'inception_resnet'],
         default='inception_resnet',
         help='Model which will be used as feature extractor'
+    )
+    parser.add_argument(
+        '--output',
+        default='../application/effortless/data',
+        help='Path to where output should be saved.'
     )
     args = parser.parse_args()
     main(args)
