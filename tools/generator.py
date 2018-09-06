@@ -17,7 +17,7 @@ CSV file example:
 Example:
     Generate k-d tree from list of images in images.txt using InceptionV3 model:
         
-        $ python generate_tree.py images.csv --model inception
+        $ python generator.py images.csv --model inception
 """
 import csv
 import argparse
