@@ -96,7 +96,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '--output',
-        default='../application/effortless/data',
+        default='../application/sirp/data',
         help='Path to where output should be saved.'
     )
     args = parser.parse_args()

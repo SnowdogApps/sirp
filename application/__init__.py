@@ -21,6 +21,6 @@ app.logger.addHandler(handler)
 logger = app.logger
 logger.info('config name: %s' % config_name)
 
-from .effortless.controllers import effortless
+from .sirp.controllers import sirp
 
-app.register_blueprint(effortless)
+app.register_blueprint(sirp)
