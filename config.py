@@ -9,8 +9,6 @@ class Config:
     DEBUG = False
     TESTING = False
 
-    SERVER_NAME = '0.0.0.0:4350'
-
     LOG_LEVEL = logging.INFO
     LOG_FORMATTER = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')

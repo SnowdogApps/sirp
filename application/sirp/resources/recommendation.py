@@ -62,7 +62,6 @@ class RecommendationResource(Resource):
         # it could be done with operator.iteritems and it will be faster,
         # but I think that using list comprehensions is clearer
         results = [ids[i] for i in recommendation_idxs]
-        results2 = list(map(ids.get, recommendation_idxs))
         response = {
             'recommended_products': results
         }
