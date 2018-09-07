@@ -4,8 +4,11 @@ from keras.models import Model
 
 def get_extractor(layer='mixed10'):
     """Returns pretrained InceptionResNetV2 model from bottom
-    to conv_7b layer.
-    
+    to chosen layer (mixed10 by default)
+
+    Args:
+        layer (str): extractor output layer
+
     Returns:
         keras.Model
     """

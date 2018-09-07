@@ -2,7 +2,7 @@
 
 This script extracts features from images using chosen model and then generates
 k-d tree with this extracted tensors. As input it takes csv file where each
-line contains id and path to image and the output is pickled tree. ID can be
+line contains id, path to image and the output is pickled tree. ID can be
 integer or string.
 
 CSV file example:
@@ -16,7 +16,7 @@ CSV file example:
 
 Example:
     Generate k-d tree from list of images in images.txt using InceptionV3 model:
-        
+
         $ python generator.py images.csv --model inception
 """
 import os

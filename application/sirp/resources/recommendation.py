@@ -35,7 +35,6 @@ except IOError:
     sys.exit()
 
 
-
 class RecommendationResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
@@ -44,11 +43,11 @@ class RecommendationResource(Resource):
         self.parser.add_argument('without_first', required=False, type=bool,
                                  location='args', default=True)
 
-    def get(self, id):
+    def get(self, _id):
         args = self.parser.parse_args()
 
         try:
-            idx = ids.index(id)
+            idx = ids.index(_id)
         except ValueError:
             raise InvalidUsage('Product not found')
 

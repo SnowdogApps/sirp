@@ -4,8 +4,11 @@ from keras.models import Model
 
 def get_extractor(layer='block5_conv3'):
     """Returns pretrained InceptionResNetV2 model from bottom
-    to choosen layer (block5_conv3 by default).
-    
+    to chosen layer (block5_conv3 by default).
+
+    Args:
+        layer (str): extractor output layer
+
     Returns:
         keras.Model
     """
