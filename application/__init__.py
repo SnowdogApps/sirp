@@ -8,8 +8,8 @@ app = Flask(__name__)
 CORS(app)
 
 configs = {
+    'base': 'config.Config',
     'dev': 'config.Development',
-    'test': 'config.Testing'
 }
 config_name = configs[os.getenv('SERVER_CONFIG', 'dev')]
 app.config.from_object(config_name)
