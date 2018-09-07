@@ -16,4 +16,4 @@ def handle_invalid_usage(error):
 
 api = Api(sirp)
 
-api.add_resource(RecommendationResource, '/recommendations/<id>')
+api.add_resource(RecommendationResource, '/recommendations/<_id>')
