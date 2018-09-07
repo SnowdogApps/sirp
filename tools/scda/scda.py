@@ -1,3 +1,13 @@
+"""This script implements Selective Convolutional Descriptor Aggregation
+algorithm.
+
+Paper:
+    Selective Convolutional Descriptor Aggregation for Fine-Grained Image Retrieval
+    arXiv:1604.04994
+    https://arxiv.org/abs/1604.04994
+"""
+
+
 import copy
 
 from keras.preprocessing import image
