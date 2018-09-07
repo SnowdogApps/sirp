@@ -47,13 +47,22 @@ $ curl localhost:4350/recommendations/13
 #### Running server
 By default server is running using Flask's built-in server but it shouldn't be 
 used for production. 
-[Here you can read more about deploying to production.](http://flask.pocoo.org/docs/1.0/tutorial/deploy/)
+[Here you can read more about deploying to production.](http://flask.pocoo.org/docs/1.0/tutorial/deploy/)  
+Using `SERVER_CONFIG` environmental variable you can choose config, by default 
+there two options:  
+* `SERVER_CONFIG=base` - base configuration
+* `SERVER_CONFIG=dev` - development configuration (more about this in next 
+section)
 
 ##### Configuration
 You can change or add your configuration by editing `config.py`. There are two
 basic configuration classes:
-* Config - Base Configuration, you can 
+* Config - Base Configuration, you can inherit this class to create your own 
+configurations
+* Development - turns on debugging and pretty print for responses  
 
+In configuration file you can set paths to your recommendation data and [other 
+Flask configuration values](http://flask.pocoo.org/docs/1.0/config/#builtin-configuration-values)
 
 #### Endpoint
 * GET `recommendations/<id>`
