@@ -6,10 +6,10 @@ line contains id and path to image and the output is pickled tree. ID can be
 integer or string.
 
 CSV file example:
-    0, polyvore-dataset/images/185225843/1.jpg
-    1, polyvore-dataset/images/118117317/1.jpg
-    2, polyvore-dataset/images/196794889/1.jpg
-    3, polyvore-dataset/images/194797482/1.jpg
+    0, path/to/image/0.jpg
+    1, path/to/image/1.jpg
+    2, path/to/image/2.jpg
+    3, path/to/image/3.jpg
     .
     .
     .
