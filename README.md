@@ -68,10 +68,11 @@ Flask configuration values](http://flask.pocoo.org/docs/1.0/config/#builtin-conf
 * GET `recommendations/<id>`
 Get recommendations for given product ID.  
 Optional querystring arguments:
-* `limit` - number of recommendations to be returned  
+* `limit` - number of recommendations to be returned (default: 5)
+* `including_first` - to include or not first recommendation(default: False / 0)* 
 
 Example request:  
-`curl localhost:4350/recommendations/13?limit=3`   
+`curl localhost:4350/recommendations/13?limit=3&including_first=1`   
 
 Example response:
 ```json
@@ -83,4 +84,7 @@ Example response:
           ]
 }
 ```
-
+\* When you're looking for nearest neighbour using image from recommendation 
+dataset it will find the same image as first result. Sometimes it is useful but 
+in case of recommendation system probably you don't want to get the same product
+as recommendation. 
