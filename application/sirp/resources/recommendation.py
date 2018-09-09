@@ -2,6 +2,7 @@ import sys
 import csv
 import pickle
 from flask_restful import Resource, reqparse
+from flask_restful.inputs import boolean
 
 from application import app, logger
 from ..exceptions import InvalidUsage
@@ -40,8 +41,8 @@ class RecommendationResource(Resource):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('limit', required=False, type=int,
                                  location='args', default=5)
-        self.parser.add_argument('without_first', required=False, type=bool,
-                                 location='args', default=True)
+        self.parser.add_argument('including_first', required=False,
+                                 type=boolean, location='args', default=False)
 
     def get(self, _id):
         args = self.parser.parse_args()
@@ -51,13 +52,20 @@ class RecommendationResource(Resource):
         except ValueError:
             raise InvalidUsage('Product not found')
 
+        if args['including_first']:
+            limit = args['limit']
+        else:
+            limit = args['limit'] + 1
         dists, recommendation_idxs = tree.query(
             [features[idx]],
-            k=args['limit'],
+            k=limit,
             sort_results=True
         )
 
-        recommendation_idxs = recommendation_idxs[0]
+        if args['including_first']:
+            recommendation_idxs = recommendation_idxs[0]
+        else:
+            recommendation_idxs = recommendation_idxs[0][1:]
 
         # it could be done with operator.iteritems and it will be faster,
         # but I think that using list comprehensions is clearer
