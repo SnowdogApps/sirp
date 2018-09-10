@@ -1,5 +1,9 @@
 # SIRP - Image Based Recommendation System
 SIRP (pl. System Inteligentnej Rekomendacji Produktów - intelligent product recommendation system)
+
+#### Research repository
+https://github.com/SnowdogApps/sirp-research
+
 ## API
 Minimal working API with SIRP
 
@@ -92,7 +96,7 @@ as recommendation.
 #### Generating recommendation space
 ```
 usage: generator.py [-h] [--model {vgg16,inception,inception_resnet}]
-                    [--output OUTPUT]
+                    [--output OUTPUT] [--scda]
                     images
 
 Script for generating recommendation k-d tree
@@ -105,4 +109,6 @@ optional arguments:
   --model {vgg16,inception,inception_resnet}
                         Model which will be used as feature extractor
   --output OUTPUT       Path to where output should be saved.
+  --scda                Activates Selective Convolutional Descriptor
+                        Aggregation
 ``` 
