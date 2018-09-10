@@ -65,13 +65,17 @@ def main(args):
     for file in tqdm(images):
         img = scda.load_img(file)
         activations = scda.extract_features(extractor, img, preprocess)
-        description = scda.aggregate_descriptors(activations)
+        mask = None
+        if args['scda']:
+            aggregation_map, threshold = scda.aggregate(activations)
+            mask = scda.get_mask(aggregation_map, threshold)
+        description = scda.aggregate_descriptors(activations, mask=mask)
         descriptions.append(description)
 
     print('Saving features...')
     with open(os.path.join(args.output, 'features.pickle'), 'wb') as f:
         pickle.dump(descriptions, f, pickle.HIGHEST_PROTOCOL)
-    print('Features saved.')
+        print('Features saved.')
 
     print('Creating k-d tree...')
     tree = KDTree(descriptions)
@@ -79,7 +83,7 @@ def main(args):
     print('Pickling tree...')
     with open(os.path.join(args.output, 'tree.pickle'), 'wb') as f:
         pickle.dump(tree, f, pickle.HIGHEST_PROTOCOL)
-    print('Tree saved.')
+        print('Tree saved.')
 
 
 if __name__ == '__main__':
@@ -98,6 +102,12 @@ if __name__ == '__main__':
         '--output',
         default='../application/sirp/data',
         help='Path to where output should be saved.'
+    )
+    parser.add_argument(
+        '--scda',
+        action='store_true',
+        help='Activates Selective Convolutional Descriptor Aggregation'
+
     )
     args = parser.parse_args()
     main(args)

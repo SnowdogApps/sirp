@@ -87,4 +87,22 @@ Example response:
 \* When you're looking for nearest neighbour using image from recommendation 
 dataset it will find the same image as first result. Sometimes it is useful but 
 in case of recommendation system probably you don't want to get the same product
-as recommendation. 
+as recommendation.
+
+#### Generating recommendation space
+```
+usage: generator.py [-h] [--model {vgg16,inception,inception_resnet}]
+                    [--output OUTPUT]
+                    images
+
+Script for generating recommendation k-d tree
+
+positional arguments:
+  images                Path to text file with paths to images
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --model {vgg16,inception,inception_resnet}
+                        Model which will be used as feature extractor
+  --output OUTPUT       Path to where output should be saved.
+``` 
