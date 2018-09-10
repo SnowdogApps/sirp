@@ -66,7 +66,7 @@ def main(args):
         img = scda.load_img(file)
         activations = scda.extract_features(extractor, img, preprocess)
         mask = None
-        if args['scda']:
+        if args.scda:
             aggregation_map, threshold = scda.aggregate(activations)
             mask = scda.get_mask(aggregation_map, threshold)
         description = scda.aggregate_descriptors(activations, mask=mask)
